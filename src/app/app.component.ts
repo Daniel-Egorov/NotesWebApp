@@ -48,9 +48,9 @@ export class AppComponent {
   public filteredNotes = this.notes;
   public data: any = [];
 
-  constructor(private httpClient: HttpClient){}
+  constructor(private httpClient: HttpClient) { }
   ngOnInit() {
-    this.httpClient.get("assets/data.json").subscribe(data =>{
+    this.httpClient.get("assets/data.json").subscribe(data => {
       console.log(data);
       this.data = data;
     })
@@ -119,7 +119,7 @@ export class AppComponent {
 
   onTextFieldInput(event: any) {
     if (
-      event 
+      event
       && this.noteList?.getSelectedIndex() !== -1
     ) {
       this.saveDisabled = false;
@@ -132,14 +132,14 @@ export class AppComponent {
   onTextAreaInput(event: any) {
 
     if (
-      event 
+      event
       && this.noteList?.getSelectedIndex() !== -1
     ) {
       this.saveDisabled = false;
     }
     else if (
-      !event 
-      && this.noteTitleInput?.value 
+      !event
+      && this.noteTitleInput?.value
       && this.noteList?.getSelectedIndex() !== -1
     ) {
       this.saveDisabled = false;
@@ -159,5 +159,7 @@ export class AppComponent {
 
   onSearchFieldInput(event: any) {
     this.filteredNotes = this.notes.filter(note => note.title?.toLowerCase()?.includes(event.toLowerCase()));
+    this.noteList?.reset();
+    this.clearTextFields();
   }
 }
