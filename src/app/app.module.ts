@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import {MaterialModule} from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -14,6 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserModule,
     MaterialModule,
     FlexLayoutModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

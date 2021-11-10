@@ -1,6 +1,7 @@
 import { MdcList, MdcTextarea, MdcTextField } from '@angular-mdc/web';
 import { Component, ViewChild } from '@angular/core';
-import * as FileSaver from 'file-saver';
+
+import { HttpClient } from "@angular/common/http";
 
 export class Note {
   title: string | undefined;
@@ -11,6 +12,18 @@ export class Note {
     this.title = title;
     this.text = text;
     this.date = date;
+  }
+
+  toJSON() {
+    return {
+      "title": this.title,
+      "date": this.date,
+      "text": this.text
+    }
+  }
+
+  fromJSON(json: any) {
+    return new Note(json.title, json.date, json.text)
   }
 }
 
@@ -33,10 +46,27 @@ export class AppComponent {
   public noteTitle = '';
   public noteText = '';
   public filteredNotes = this.notes;
+  public data: any = [];
+
+  constructor(private httpClient: HttpClient){}
+  ngOnInit() {
+    this.httpClient.get("assets/data.json").subscribe(data =>{
+      console.log(data);
+      this.data = data;
+    })
+  }
 
   clearTextFields() {
     this.noteTextInput?.writeValue(null);
     this.noteTitleInput?.writeValue(null);
+  }
+
+  noteArrayToJSON(array: Array<Note>) {
+    let jsonObject = [];
+    for (let i = 0; i < array.length; i++) {
+      jsonObject[i] = (array[i].toJSON());
+    }
+    return jsonObject;
   }
 
   onAdd() {
@@ -71,8 +101,10 @@ export class AppComponent {
   onSave() {
     if (this.noteList?.getSelectedIndex() !== -1) {
       let note = this.notes[this.noteList!.getSelectedIndex()];
+
       note.title = this.noteTitleInput?.value;
       note.text = this.noteTextInput?.value;
+
       this.noteList?.reset();
       this.clearTextFields();
       this.saveDisabled = true;
