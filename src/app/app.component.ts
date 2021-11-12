@@ -1,32 +1,18 @@
 import { MdcList, MdcTextarea, MdcTextField } from '@angular-mdc/web';
 import { Component, ViewChild } from '@angular/core';
 
-import { HttpClient } from "@angular/common/http";
-
 export class Note {
   title: string | undefined;
-  date: Date | undefined;
+  date: string | undefined;
   text: string | undefined;
+  dateFormatted: string | undefined;
 
   constructor(title: string, date: Date, text: string) {
     this.title = title;
     this.text = text;
-    this.date = date;
-  }
-
-  toJSON() {
-    return {
-      "title": this.title,
-      "date": this.date,
-      "text": this.text
-    }
-  }
-
-  fromJSON(json: any) {
-    return new Note(json.title, json.date, json.text)
+    this.date = date ? date.toLocaleString() : "";
   }
 }
-
 
 @Component({
   selector: 'app-root',
@@ -43,17 +29,19 @@ export class AppComponent {
   public counter = 0;
   public notes = new Array<Note>();
   public saveDisabled = true;
-  public noteTitle = '';
-  public noteText = '';
+  public inputDisabled = true;
   public filteredNotes = this.notes;
   public data: any = [];
 
-  constructor(private httpClient: HttpClient) { }
+  constructor() { }
   ngOnInit() {
-    this.httpClient.get("assets/data.json").subscribe(data => {
-      console.log(data);
-      this.data = data;
-    })
+    this.data = JSON.parse(localStorage.getItem('notesJSON')!);
+
+    for (let i = 0; i < this.data.length; i++) {
+      this.notes.push(new Note(this.data[i].title, this.data[i].date, this.data[i].text));
+    }
+
+    this.filteredNotes = this.notes;
   }
 
   clearTextFields() {
@@ -61,15 +49,8 @@ export class AppComponent {
     this.noteTitleInput?.writeValue(null);
   }
 
-  noteArrayToJSON(array: Array<Note>) {
-    let jsonObject = [];
-    for (let i = 0; i < array.length; i++) {
-      jsonObject[i] = (array[i].toJSON());
-    }
-    return jsonObject;
-  }
-
   onAdd() {
+    this.inputDisabled = false;
     let newNote = new Note(
       "New Note",
       new Date(Date.now()),
@@ -94,8 +75,11 @@ export class AppComponent {
       this.clearTextFields();
     }
 
+    this.inputDisabled = true;
+
     this.notes.splice(this.notes.indexOf(note), 1);
-    this.filteredNotes.splice(this.filteredNotes.indexOf(note), 1);
+    this.filteredNotes = this.notes;
+    localStorage.setItem('notesJSON', JSON.stringify(this.notes))
   }
 
   onSave() {
@@ -108,10 +92,14 @@ export class AppComponent {
       this.noteList?.reset();
       this.clearTextFields();
       this.saveDisabled = true;
+
+      localStorage.setItem('notesJSON', JSON.stringify(this.notes));
+
     }
   }
 
   onSelectionChange(_: any) {
+    this.inputDisabled = false;
     this.noteTitleInput?.writeValue(this.notes[this.noteList!.getSelectedIndex()].title);
     this.noteTextInput?.writeValue(this.notes[this.noteList!.getSelectedIndex()].text);
     this.noteTextInput?.focus();
@@ -147,14 +135,6 @@ export class AppComponent {
     else {
       this.saveDisabled = true;
     }
-  }
-
-  onTextFieldChange(event: any) {
-    this.noteTitle = event;
-  }
-
-  onTextAreaChange(event: any) {
-    this.noteText = event;
   }
 
   onSearchFieldInput(event: any) {

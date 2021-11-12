@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@material/theme' with (
+  $primary: #6200ee,
+  $secondary: #faab1a,
+  $background: #fff,
+);
 
 // MDC Typography
 @use "@material/typography/mdc-typography";
@@ -6,17 +11,10 @@
 // MDC Button
 @use "@material/button/mdc-button";
 @use "@material/button";
-@use "@material/theme";
 
 // MDC List
 @use "@material/list/mdc-list";
 @use "@material/list";
-
-// @use '@material/theme' with (
-//   $primary: #6200ee,
-//   $secondary: #faab1a,
-//   $background: #fff,
-// );
 
 // MDC Text Field - Text Area
 @use '@material/textfield/mdc-text-field';

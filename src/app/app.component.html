@@ -324,7 +324,7 @@
       <div fxFlexOffset="63px">
         <mdc-list #noteList style="height: 500px; overflow-y: scroll;" [dense]="false" [twoLine]="true" [useSelectedClass]="true" [singleSelection]="true" (selectionChange)="onSelectionChange($event)">
           <mdc-list-item *ngFor="let note of filteredNotes">
-            <mdc-list-item-text [secondaryText]="note.date ? note.date.toLocaleString() : ''">{{note.title}}
+            <mdc-list-item-text [secondaryText]="note.date">{{note.title}}
             </mdc-list-item-text>
             <span mdcListItemMeta mdcIcon title="Delete" (click)="onDelete(note)">clear</span>
           </mdc-list-item>
@@ -353,10 +353,10 @@
         </div>
       </div>
       <div fxLayout="column" fxLayoutGap="15px">
-        <mdc-text-field #noteTitleInput label="Title" (input)="onTextFieldInput($event)" (change)="onTextFieldChange($event)" [outlined]="true">
+        <mdc-text-field #noteTitleInput label="Title" [disabled]="inputDisabled" (input)="onTextFieldInput($event)" [outlined]="true">
         </mdc-text-field>
       
-        <mdc-textarea #noteTextInput label="Note" [rows]="15" [cols]="100" (input)="onTextAreaInput($event)" (change)="onTextAreaChange($event)">
+        <mdc-textarea #noteTextInput label="Note" [disabled]="inputDisabled" [rows]="15" [cols]="100" (input)="onTextAreaInput($event)">
         </mdc-textarea>
       </div>
   
