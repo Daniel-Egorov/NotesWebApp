@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
   :host {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 14px;
@@ -292,7 +292,7 @@
       visibility: hidden;
     }
   }
-</style>
+</style> -->
 
 <!-- Toolbar -->
 <!-- <div class="toolbar" role="banner">
@@ -317,9 +317,8 @@
     </svg>
   </a>
 </div> -->
-
-<div class="content" role="main">
-  <div fxLayout="row" fxLayoutAlign="center top" fxLayoutGap="15px">
+<div id="container">
+  <div fxLayout="row" fxLayoutAlign="left" fxLayoutGap="15px">
     <div fxFlex="225px" fxLayout="column wrap">
       <div fxFlexOffset="63px">
         <mdc-list #noteList style="height: 500px; overflow-y: scroll;" [dense]="false" [twoLine]="true" [useSelectedClass]="true" [singleSelection]="true" (selectionChange)="onSelectionChange($event)">
@@ -333,14 +332,14 @@
     </div>
     <div fxLayout="column" fxLayoutGap="15px">
       <div fxLayout="row" fxLayoutAlign="space-between end">
-        <div fxLayout="row">
-          <button (click)="onAdd()" class="mdc-button mdc-button--icon-leading">
+        <div fxLayout="row" fxLayoutGap="10px">
+          <button mdc-button (click)="onAdd()" class="mdc-button mdc-button--icon-leading" [outlined]="true">
             <span class="mdc-button__ripple"></span>
             <i class="material-icons mdc-button__icon" aria-hidden="true">post_add</i>
             <span class="mdc-button__label">Add</span>
           </button>
     
-          <button [disabled]="saveDisabled" (click)="onSave()" class="mdc-button mdc-button--icon-leading">
+          <button mdc-button [disabled]="saveDisabled" (click)="onSave()" class="mdc-button mdc-button--icon-leading" [outlined]="true">
             <span class="mdc-button__ripple"></span>
             <i class="material-icons mdc-button__icon" aria-hidden="true">save_alt</i>
             <span class="mdc-button__label">Save</span>
@@ -359,7 +358,6 @@
         <mdc-textarea #noteTextInput label="Note" [disabled]="inputDisabled" [rows]="15" [cols]="100" (input)="onTextAreaInput($event)">
         </mdc-textarea>
       </div>
-  
     </div>
-  </div>
+  </div>  
 </div>

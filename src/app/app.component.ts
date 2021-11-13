@@ -47,6 +47,7 @@ export class AppComponent {
   clearTextFields() {
     this.noteTextInput?.writeValue(null);
     this.noteTitleInput?.writeValue(null);
+    this.saveDisabled = true;
   }
 
   onAdd() {
@@ -68,6 +69,7 @@ export class AppComponent {
       this.clearTextFields();
       this.noteTitleInput?.focus();
     }, 1);
+    localStorage.setItem('notesJSON', JSON.stringify(this.notes));
   }
 
   onDelete(note: Note) {

@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@material/theme' with (
-  $primary: #6200ee,
-  $secondary: #faab1a,
-  $background: #fff,
+  $primary: hotpink,
+  $secondary: black,
+  $background: white,
 );
 
 // MDC Typography
@@ -20,13 +20,43 @@
 @use '@material/textfield/mdc-text-field';
 @use '@material/textfield/_index' as textfield;
 @use '@material/form-field/_index' as form-field;
+@use '@material/textfield/icon/_index' as textfield-icon;
 
 @use "@angular-mdc/theme/material";
 
-.button-primary {
-  @include button.filled-accessible(theme.$primary);
+
+.custom-theme {
+  background-color: theme.$background;
+  margin-top: 50px;
+}
+.custom-theme mdc-text-field {
+  @include textfield.label-color(theme.$secondary);
+  @include textfield.disabled-label-color(theme.$secondary);
+
+  @include textfield.ink-color(theme.$secondary);
+
+  @include textfield.disabled-outline-color(theme.$primary);
+  @include textfield.outline-color(theme.$primary);
+  @include textfield.hover-outline-color(theme.$primary);
+  @include textfield.outlined-density(-3);
+
+  @include textfield-icon.leading-icon-color(theme.$secondary);
 }
 
-.button-secondary {
-  @include button.filled-accessible(theme.$secondary);
+.custom-theme mdc-textarea {
+  @include textfield.ink-color(theme.$secondary);
+  
+  @include textfield.disabled-fill-color(transparent);
+
+  @include textfield.label-color(theme.$secondary);
+  @include textfield.disabled-label-color(theme.$secondary);
+  
+  @include textfield.disabled-outline-color(theme.$primary);
+  @include textfield.outline-color(theme.$primary);
+  @include textfield.hover-outline-color(theme.$primary);
+}
+
+.custom-theme button {
+  @include button.outline-width(2px);
+  @include button.outline-color(theme.$primary);
 }
