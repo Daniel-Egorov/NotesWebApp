@@ -35,12 +35,7 @@ export class AppComponent {
 
   constructor() { }
   ngOnInit() {
-    this.data = JSON.parse(localStorage.getItem('notesJSON')!);
-
-    for (let i = 0; i < this.data.length; i++) {
-      this.notes.push(new Note(this.data[i].title, this.data[i].date, this.data[i].text));
-    }
-
+    this.notes = JSON.parse(localStorage.getItem('notesJSON')!);
     this.filteredNotes = this.notes;
   }
 
@@ -57,6 +52,7 @@ export class AppComponent {
       new Date(Date.now()),
       ""
     );
+
     this.notes.unshift(newNote);
     this.filteredNotes = this.notes.filter(note => {
       if (!this.searchFieldInput?.value) {
@@ -64,6 +60,7 @@ export class AppComponent {
       }
       return note?.title?.includes(this.searchFieldInput?.value.toLowerCase());
     });
+
     setTimeout(() => {
       this.noteList?.setSelectedIndex(0);
       this.clearTextFields();
