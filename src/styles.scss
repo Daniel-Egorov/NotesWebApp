@@ -1,10 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-@use '@material/theme' with (
-  $primary: hotpink,
-  $secondary: black,
-  $background: white,
-);
+@use '@material/theme';
 
+$primary-light: hotpink;
+$secondary-light: black;
+$background-light: white;
+
+$primary-dark: hotpink;
+$secondary-dark: white;
+$background-dark: black;
 // MDC Typography
 @use "@material/typography/mdc-typography";
 
@@ -24,39 +27,133 @@
 
 @use "@angular-mdc/theme/material";
 
+@use "@material/ripple/mdc-ripple";
+@use "@material/ripple/_index" as ripple;
 
-.custom-theme {
-  background-color: theme.$background;
+.light-theme {
+  background-color: $background-light;
   margin-top: 50px;
-}
-.custom-theme mdc-text-field {
-  @include textfield.label-color(theme.$secondary);
-  @include textfield.disabled-label-color(theme.$secondary);
 
-  @include textfield.ink-color(theme.$secondary);
-
-  @include textfield.disabled-outline-color(theme.$primary);
-  @include textfield.outline-color(theme.$primary);
-  @include textfield.hover-outline-color(theme.$primary);
-  @include textfield.outlined-density(-3);
-
-  @include textfield-icon.leading-icon-color(theme.$secondary);
-}
-
-.custom-theme mdc-textarea {
-  @include textfield.ink-color(theme.$secondary);
+  mdc-text-field {
+    @include textfield.caret-color($primary-light);
   
-  @include textfield.disabled-fill-color(transparent);
-
-  @include textfield.label-color(theme.$secondary);
-  @include textfield.disabled-label-color(theme.$secondary);
+    @include textfield.label-color($secondary-light);
+    @include textfield.disabled-label-color($secondary-light);
   
-  @include textfield.disabled-outline-color(theme.$primary);
-  @include textfield.outline-color(theme.$primary);
-  @include textfield.hover-outline-color(theme.$primary);
+    @include textfield.ink-color($secondary-light);
+  
+    @include textfield.disabled-outline-color($primary-light);
+    @include textfield.outline-color($primary-light);
+    @include textfield.hover-outline-color($primary-light);
+    @include textfield.outlined-density(-3);
+    @include textfield.focused-outline-color($primary-light);
+  
+    @include textfield-icon.leading-icon-color($secondary-light);
+  }
+  mdc-textarea {
+    @include textfield.caret-color($primary-light);
+    
+    @include textfield.ink-color($secondary-light);
+    
+    @include textfield.disabled-fill-color(transparent);
+  
+    @include textfield.label-color($secondary-light);
+    @include textfield.disabled-label-color($secondary-light);
+    
+    @include textfield.disabled-outline-color($primary-light);
+    @include textfield.outline-color($primary-light);
+    @include textfield.hover-outline-color($primary-light);
+    @include textfield.focused-outline-color($primary-light);
+  }
+  button {
+    @include button.outline-width(2px);
+    @include button.outline-color($primary-light);
+    @include button.disabled-outline-color($secondary-light);
+  
+    @include button.ink-color($primary-light);
+    @include button.disabled-ink-color($secondary-light);
+  }
+  .mdc-button__ripple {
+    @include ripple.states-base-color($primary-light);
+  }
+  mdc-list {
+    @include list.item-primary-text-ink-color($secondary-light);
+    @include list.item-secondary-text-ink-color($secondary-light);
+    
+    @include list.item-meta-ink-color($primary-light);
+  }
+  mdc-list-item {
+    &.mdc-list-item--selected {
+      @include list.item-primary-text-ink-color($primary-light);
+      @include list.item-graphic-fill-color($primary-light);
+  
+      &.mdc-ripple-upgraded {
+        @include ripple.states-base-color($primary-light);
+      }
+    }
+  }
 }
 
-.custom-theme button {
-  @include button.outline-width(2px);
-  @include button.outline-color(theme.$primary);
+.dark-theme {
+  background-color: $background-dark;
+  margin-top: 50px;
+
+  mdc-text-field {
+    @include textfield.caret-color($primary-dark);
+  
+    @include textfield.label-color($secondary-dark);
+    @include textfield.disabled-label-color($secondary-dark);
+  
+    @include textfield.ink-color($secondary-dark);
+  
+    @include textfield.disabled-outline-color($primary-dark);
+    @include textfield.outline-color($primary-dark);
+    @include textfield.hover-outline-color($primary-dark);
+    @include textfield.outlined-density(-3);
+    @include textfield.focused-outline-color($primary-dark);
+  
+    @include textfield-icon.leading-icon-color($secondary-dark);
+  }
+  mdc-textarea {
+    @include textfield.caret-color($primary-dark);
+    
+    @include textfield.ink-color($secondary-dark);
+    
+    @include textfield.disabled-fill-color(transparent);
+  
+    @include textfield.label-color($secondary-dark);
+    @include textfield.disabled-label-color($secondary-dark);
+    
+    @include textfield.disabled-outline-color($primary-dark);
+    @include textfield.outline-color($primary-dark);
+    @include textfield.hover-outline-color($primary-dark);
+    @include textfield.focused-outline-color($primary-dark);
+  }
+  button {
+    @include button.outline-width(2px);
+    @include button.outline-color($primary-dark);
+    @include button.disabled-outline-color($secondary-dark);
+  
+    @include button.ink-color($primary-dark);
+    @include button.disabled-ink-color($secondary-dark);
+  }
+  .mdc-button__ripple {
+    @include ripple.states-base-color($primary-dark);
+  }
+  mdc-list {
+    @include list.item-primary-text-ink-color($secondary-dark);
+    @include list.item-secondary-text-ink-color($secondary-dark);
+    
+    @include list.item-meta-ink-color($primary-dark);
+  }
+  mdc-list-item {
+    &.mdc-list-item--selected {
+      @include list.item-primary-text-ink-color($primary-dark);
+      @include list.item-graphic-fill-color($primary-dark);
+  
+      &.mdc-ripple-upgraded {
+        @include ripple.states-base-color($primary-dark);
+      }
+    }
+  }
 }
