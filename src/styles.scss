@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@material/theme';
 
-$primary-light: hotpink;
-$secondary-light: black;
-$background-light: white;
+$primary-light: rgb(255, 105, 180);
+$secondary-light: rgb(0, 0, 0);
+$background-light: rgb(255, 255, 255);
 
-$primary-dark: hotpink;
-$secondary-dark: white;
-$background-dark: black;
+$primary-dark: rgb(255, 105, 180);
+$secondary-dark: rgb(255, 255, 255);
+$background-dark: rgb(0, 0, 0);
 // MDC Typography
 @use "@material/typography/mdc-typography";
 
@@ -68,10 +68,10 @@ $background-dark: black;
   button {
     @include button.outline-width(2px);
     @include button.outline-color($primary-light);
-    @include button.disabled-outline-color($secondary-light);
+    @include button.disabled-outline-color(rgba($secondary-light, .5));
   
     @include button.ink-color($primary-light);
-    @include button.disabled-ink-color($secondary-light);
+    @include button.disabled-ink-color(rgba($secondary-light, .5));
   }
   .mdc-button__ripple {
     @include ripple.states-base-color($primary-light);
@@ -132,10 +132,10 @@ $background-dark: black;
   button {
     @include button.outline-width(2px);
     @include button.outline-color($primary-dark);
-    @include button.disabled-outline-color($secondary-dark);
+    @include button.disabled-outline-color(rgba($secondary-dark, .5));
   
     @include button.ink-color($primary-dark);
-    @include button.disabled-ink-color($secondary-dark);
+    @include button.disabled-ink-color(rgba($secondary-dark, .5));
   }
   .mdc-button__ripple {
     @include ripple.states-base-color($primary-dark);
