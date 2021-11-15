@@ -35,8 +35,11 @@ export class AppComponent {
 
   constructor() { }
   ngOnInit() {
-    this.notes = JSON.parse(localStorage.getItem('notesJSON')!);
-    this.filteredNotes = this.notes;
+    this.data = JSON.parse(localStorage.getItem('notesJSON')!);
+    if (this.data) {
+      this.notes = this.data;
+      this.filteredNotes = this.notes;
+    }
   }
 
   clearTextFields() {
