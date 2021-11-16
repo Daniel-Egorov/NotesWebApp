@@ -34,13 +34,20 @@ export class AppComponent {
   public filteredNotes = this.notes;
   public data: any = [];
   public body = document.body;
+  public theme: string | null = null;
 
   constructor() { }
   ngOnInit() {
     this.data = JSON.parse(localStorage.getItem('notesJSON')!);
+    this.theme = JSON.parse(localStorage.getItem('theme')!);
     if (this.data) {
       this.notes = this.data;
       this.filteredNotes = this.notes;
+    }
+
+    if (this.theme![0]) {
+      if (this.theme![0] === 'dark-theme') this.body.classList.replace('light-theme', 'dark-theme');
+      else if (this.theme![0] === 'light-theme') this.body.classList.replace('dark-theme', 'light-theme');
     }
   }
   
@@ -113,8 +120,14 @@ export class AppComponent {
   }
 
   onThemeClick() {
-    if (this.body.classList[0] === 'dark-theme') this.body.classList.replace('dark-theme', 'light-theme');
-    else if (this.body.classList[0] === 'light-theme') this.body.classList.replace('light-theme', 'dark-theme');
+    if (this.body.classList[0] === 'dark-theme') {
+      localStorage.setItem('theme', JSON.stringify(['light-theme']));
+      this.body.classList.replace('dark-theme', 'light-theme');
+    } 
+    else if (this.body.classList[0] === 'light-theme') {
+      localStorage.setItem('theme', JSON.stringify(['dark-theme']));
+      this.body.classList.replace('light-theme', 'dark-theme');
+    } 
   }
 
   onSelectionChange(_: any) {
