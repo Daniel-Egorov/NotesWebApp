@@ -32,6 +32,7 @@ export class AppComponent {
   public inputDisabled = true;
   public filteredNotes = this.notes;
   public data: any = [];
+  public body = document.body;
 
   constructor() { }
   ngOnInit() {
@@ -98,6 +99,11 @@ export class AppComponent {
       localStorage.setItem('notesJSON', JSON.stringify(this.notes));
 
     }
+  }
+
+  onThemeClick() {
+    if (this.body.classList[0] === 'dark-theme') this.body.classList.replace('dark-theme', 'light-theme');
+    else if (this.body.classList[0] === 'light-theme') this.body.classList.replace('light-theme', 'dark-theme');
   }
 
   onSelectionChange(_: any) {

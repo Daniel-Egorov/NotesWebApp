@@ -319,8 +319,8 @@
 </div> -->
 <div id="container">
   <div fxLayout="row" fxLayoutAlign="left" fxLayoutGap="15px">
-    <div fxFlex="225px" fxLayout="column wrap">
-      <div fxFlexOffset="63px">
+    <div fxFlex="225px" fxLayout="column">
+      <div fxFlexOffset="52px">
         <mdc-list #noteList style="height: 500px; overflow-y: scroll;" [dense]="false" [twoLine]="true" [useSelectedClass]="true" [singleSelection]="true" (selectionChange)="onSelectionChange($event)">
           <mdc-list-item *ngFor="let note of filteredNotes">
             <mdc-list-item-text [secondaryText]="note.date">{{note.title}}
@@ -345,7 +345,12 @@
             <span class="mdc-button__label">Save</span>
           </button>
         </div>
-        <div fxLayout="row">
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between end">
+          <button mdc-button class="mdc-button mdc-button--icon-leading" (click)="onThemeClick()" [outlined]="true">
+            <span class="mdc-button__ripple"></span>
+            <i class="material-icons mdc-button__icon" aria-hidden="true">dark_mode</i>
+            <span class="mdc-button__label">theme</span>
+          </button>
           <mdc-text-field #searchFieldInput label="Search" [outlined]="true" (input)="onSearchFieldInput($event)">
             <mdc-icon mdcTextFieldIcon [leading]="true">search</mdc-icon>
           </mdc-text-field>
