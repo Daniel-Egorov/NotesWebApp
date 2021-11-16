@@ -1,4 +1,4 @@
-import { MdcList, MdcTextarea, MdcTextField } from '@angular-mdc/web';
+import { MdcButton, MdcIcon, MdcList, MdcTextarea, MdcTextField } from '@angular-mdc/web';
 import { Component, ViewChild } from '@angular/core';
 
 export class Note {
@@ -24,6 +24,7 @@ export class AppComponent {
   @ViewChild('noteTitleInput') noteTitleInput: MdcTextField | undefined;
   @ViewChild('noteList') noteList: MdcList | undefined;
   @ViewChild('searchFieldInput') searchFieldInput: MdcTextField | undefined;
+  @ViewChild('themeSwitchButton') themeSwitchButton: MdcButton | undefined;
 
   title = 'NotesWebApp';
   public counter = 0;
@@ -42,7 +43,7 @@ export class AppComponent {
       this.filteredNotes = this.notes;
     }
   }
-
+  
   clearTextFields() {
     this.noteTextInput?.writeValue(null);
     this.noteTitleInput?.writeValue(null);
@@ -85,19 +86,29 @@ export class AppComponent {
     localStorage.setItem('notesJSON', JSON.stringify(this.notes))
   }
 
+  saveTitle() {
+    let note = this.notes[this.noteList!.getSelectedIndex()];
+    note.title = this.noteTitleInput?.value;
+    localStorage.setItem('notesJSON', JSON.stringify(this.notes));
+  }
+
+  saveNoClear() {
+    let note = this.notes[this.noteList!.getSelectedIndex()];
+
+    note.title = this.noteTitleInput?.value;
+    note.text = this.noteTextInput?.value;
+    this.saveDisabled = true;
+    
+    localStorage.setItem('notesJSON', JSON.stringify(this.notes));
+  }
+
   onSave() {
     if (this.noteList?.getSelectedIndex() !== -1) {
-      let note = this.notes[this.noteList!.getSelectedIndex()];
-
-      note.title = this.noteTitleInput?.value;
-      note.text = this.noteTextInput?.value;
-
+      this.saveNoClear();
       this.noteList?.reset();
       this.clearTextFields();
       this.saveDisabled = true;
-
-      localStorage.setItem('notesJSON', JSON.stringify(this.notes));
-
+      this.inputDisabled = true;
     }
   }
 
@@ -108,21 +119,18 @@ export class AppComponent {
 
   onSelectionChange(_: any) {
     this.inputDisabled = false;
+    this.saveDisabled = true;
     this.noteTitleInput?.writeValue(this.notes[this.noteList!.getSelectedIndex()].title);
     this.noteTextInput?.writeValue(this.notes[this.noteList!.getSelectedIndex()].text);
     this.noteTextInput?.focus();
   }
 
   onTextFieldInput(event: any) {
-    if (
-      event
-      && this.noteList?.getSelectedIndex() !== -1
-    ) {
-      this.saveDisabled = false;
-    }
-    else {
-      this.saveDisabled = true;
-    }
+    this.saveTitle();
+  }
+
+  onTextFieldChange(_: any) {
+    this.saveNoClear();
   }
 
   onTextAreaInput(event: any) {
