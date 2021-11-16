@@ -34,6 +34,11 @@ $background-dark: black;
   background-color: $background-light;
   margin-top: 50px;
 
+  .themed-border {
+    border: solid 2px $primary-light;
+    border-radius: 5px;
+  }
+
   mdc-text-field {
     @include textfield.caret-color($primary-light);
   
@@ -51,6 +56,14 @@ $background-dark: black;
     @include textfield-icon.leading-icon-color($secondary-light);
   }
   mdc-textarea {
+    width: 75vw;
+    height: 71.1vh;
+    .mdc-text-field__input {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      resize: none;
+    }
     @include textfield.caret-color($primary-light);
     
     @include textfield.ink-color($secondary-light);
@@ -77,6 +90,9 @@ $background-dark: black;
     @include ripple.states-base-color($primary-light);
   }
   mdc-list {
+    height: 75vh; 
+    overflow-y: scroll;
+    
     @include list.item-primary-text-ink-color($secondary-light);
     @include list.item-secondary-text-ink-color($secondary-light);
     
@@ -98,6 +114,11 @@ $background-dark: black;
   background-color: $background-dark;
   margin-top: 50px;
 
+  .themed-border {
+    border: solid 2px $primary-dark;
+    border-radius: 5px;
+  }
+
   mdc-text-field {
     @include textfield.caret-color($primary-dark);
   
@@ -115,6 +136,14 @@ $background-dark: black;
     @include textfield-icon.leading-icon-color($secondary-dark);
   }
   mdc-textarea {
+    width: 75vw;
+    height: 71.1vh;
+    .mdc-text-field__input {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      resize: none;
+    }
     @include textfield.caret-color($primary-dark);
     
     @include textfield.ink-color($secondary-dark);
@@ -141,6 +170,9 @@ $background-dark: black;
     @include ripple.states-base-color($primary-dark);
   }
   mdc-list {
+    height: 75vh; 
+    overflow-y: scroll;
+
     @include list.item-primary-text-ink-color($secondary-dark);
     @include list.item-secondary-text-ink-color($secondary-dark);
     

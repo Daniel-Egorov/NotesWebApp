@@ -1,17 +1,6 @@
 
 <div id="container">
   <div fxLayout="row" fxLayoutAlign="left" fxLayoutGap="15px">
-    <div fxFlex="225px" fxLayout="column">
-      <div fxFlexOffset="52px">
-        <mdc-list #noteList style="height: 500px; overflow-y: scroll;" [dense]="false" [twoLine]="true" [useSelectedClass]="true" [singleSelection]="true" (selectionChange)="onSelectionChange($event)">
-          <mdc-list-item *ngFor="let note of filteredNotes">
-            <mdc-list-item-text [secondaryText]="note.date">{{note.title}}
-            </mdc-list-item-text>
-            <span mdcListItemMeta mdcIcon title="Delete" (click)="onDelete(note)">clear</span>
-          </mdc-list-item>
-        </mdc-list>
-      </div>
-    </div>
     <div fxLayout="column" fxLayoutGap="15px">
       <div fxLayout="row" fxLayoutAlign="space-between end">
         <div fxLayout="row" fxLayoutGap="10px">
@@ -38,12 +27,23 @@
           </mdc-text-field>
         </div>
       </div>
-      <div fxLayout="column" fxLayoutGap="15px">
-        <mdc-text-field #noteTitleInput label="Title" [disabled]="inputDisabled" (input)="onTextFieldInput($event)" [outlined]="true">
-        </mdc-text-field>
-      
-        <mdc-textarea #noteTextInput label="Note" [disabled]="inputDisabled" [rows]="15" [cols]="100" (input)="onTextAreaInput($event)">
-        </mdc-textarea>
+      <div fxLayout="row" fxLayoutGap="15px">
+        <div fxFlex="225px" fxLayout="column" style="display: flex;">
+          <mdc-list #noteList class="themed-border" [dense]="false" [twoLine]="true" [useSelectedClass]="true" [singleSelection]="true" (selectionChange)="onSelectionChange($event)">
+            <mdc-list-item *ngFor="let note of filteredNotes">
+              <mdc-list-item-text [secondaryText]="note.date">{{note.title}}
+              </mdc-list-item-text>
+              <span mdcListItemMeta mdcIcon title="Delete" (click)="onDelete(note)">clear</span>
+            </mdc-list-item>
+          </mdc-list>
+        </div>
+        <div fxLayout="column" fxLayoutGap="1.5vh">
+          <mdc-text-field #noteTitleInput label="Title" [disabled]="inputDisabled" (input)="onTextFieldInput($event)" [outlined]="true">
+          </mdc-text-field>
+        
+          <mdc-textarea #noteTextInput label="Note" [disabled]="inputDisabled" [rows]="15" [cols]="100" (input)="onTextAreaInput($event)">
+          </mdc-textarea>
+        </div>
       </div>
     </div>
   </div>  
