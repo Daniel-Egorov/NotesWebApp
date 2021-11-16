@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @use '@material/theme';
 
-$primary-light: rgb(255, 105, 180);
-$secondary-light: rgb(0, 0, 0);
-$background-light: rgb(255, 255, 255);
+$primary-light: hotpink;
+$secondary-light: black;
+$background-light: white;
 
-$primary-dark: rgb(255, 105, 180);
-$secondary-dark: rgb(255, 255, 255);
-$background-dark: rgb(0, 0, 0);
+$primary-dark: hotpink;
+$secondary-dark: white;
+$background-dark: black;
 // MDC Typography
 @use "@material/typography/mdc-typography";
 
