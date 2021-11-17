@@ -17,7 +17,7 @@
               <span class="mdc-button__label">Save</span>
             </button>
           </div>
-          <mdc-list #noteList class="themed-border" [dense]="false" [twoLine]="true" [useSelectedClass]="true" [singleSelection]="true" (selectionChange)="onSelectionChange($event)">
+          <mdc-list #noteList class="themed-border themed-scroll-bar" [dense]="false" [twoLine]="true" [useSelectedClass]="true" [singleSelection]="true" (selectionChange)="onSelectionChange($event)">
             <mdc-list-item *ngFor="let note of filteredNotes">
               <mdc-list-item-text [secondaryText]="note.date">{{note.title}}
               </mdc-list-item-text>
