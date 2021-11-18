@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@use '@material/theme';
+@use "@material/theme";
 
 $primary-light: hotpink;
 $secondary-light: black;
@@ -20,10 +20,10 @@ $background-dark: black;
 @use "@material/list";
 
 // MDC Text Field - Text Area
-@use '@material/textfield/mdc-text-field';
-@use '@material/textfield/_index' as textfield;
-@use '@material/form-field/_index' as form-field;
-@use '@material/textfield/icon/_index' as textfield-icon;
+@use "@material/textfield/mdc-text-field";
+@use "@material/textfield/_index" as textfield;
+@use "@material/form-field/_index" as form-field;
+@use "@material/textfield/icon/_index" as textfield-icon;
 
 @use "@angular-mdc/theme/material";
 
@@ -52,7 +52,7 @@ $background-dark: black;
       border: 3px solid $background-light;
     }
   }
-  
+
   .themed-border {
     border: solid 2px $primary-light;
     border-radius: 5px;
@@ -60,18 +60,18 @@ $background-dark: black;
 
   mdc-text-field {
     @include textfield.caret-color($primary-light);
-  
+
     @include textfield.label-color($secondary-light);
     @include textfield.disabled-label-color($secondary-light);
-  
+
     @include textfield.ink-color($secondary-light);
-  
+
     @include textfield.disabled-outline-color($primary-light);
     @include textfield.outline-color($primary-light);
     @include textfield.hover-outline-color($primary-light);
     @include textfield.outlined-density(-3);
     @include textfield.focused-outline-color($primary-light);
-  
+
     @include textfield-icon.leading-icon-color($secondary-light);
   }
   mdc-textarea {
@@ -84,14 +84,14 @@ $background-dark: black;
       resize: none;
     }
     @include textfield.caret-color($primary-light);
-    
+
     @include textfield.ink-color($secondary-light);
-    
+
     @include textfield.disabled-fill-color(transparent);
-  
+
     @include textfield.label-color($secondary-light);
     @include textfield.disabled-label-color($secondary-light);
-    
+
     @include textfield.disabled-outline-color($primary-light);
     @include textfield.outline-color($primary-light);
     @include textfield.hover-outline-color($primary-light);
@@ -100,28 +100,28 @@ $background-dark: black;
   button {
     @include button.outline-width(2px);
     @include button.outline-color($primary-light);
-    @include button.disabled-outline-color(rgba($secondary-light, .5));
-  
+    @include button.disabled-outline-color(rgba($secondary-light, 0.5));
+
     @include button.ink-color($primary-light);
-    @include button.disabled-ink-color(rgba($secondary-light, .5));
+    @include button.disabled-ink-color(rgba($secondary-light, 0.5));
   }
   .mdc-button__ripple {
     @include ripple.states-base-color($primary-light);
   }
   mdc-list {
-    height: 75vh; 
+    height: 75vh;
     overflow-y: scroll;
-    
+
     @include list.item-primary-text-ink-color($secondary-light);
     @include list.item-secondary-text-ink-color($secondary-light);
-    
+
     @include list.item-meta-ink-color($primary-light);
   }
   mdc-list-item {
     &.mdc-list-item--selected {
       @include list.item-primary-text-ink-color($primary-light);
       @include list.item-graphic-fill-color($primary-light);
-  
+
       &.mdc-ripple-upgraded {
         @include ripple.states-base-color($primary-light);
       }
@@ -159,18 +159,18 @@ $background-dark: black;
 
   mdc-text-field {
     @include textfield.caret-color($primary-dark);
-  
+
     @include textfield.label-color($secondary-dark);
     @include textfield.disabled-label-color($secondary-dark);
-  
+
     @include textfield.ink-color($secondary-dark);
-  
+
     @include textfield.disabled-outline-color($primary-dark);
     @include textfield.outline-color($primary-dark);
     @include textfield.hover-outline-color($primary-dark);
     @include textfield.outlined-density(-3);
     @include textfield.focused-outline-color($primary-dark);
-  
+
     @include textfield-icon.leading-icon-color($secondary-dark);
   }
   mdc-textarea {
@@ -183,14 +183,14 @@ $background-dark: black;
       resize: none;
     }
     @include textfield.caret-color($primary-dark);
-    
+
     @include textfield.ink-color($secondary-dark);
-    
+
     @include textfield.disabled-fill-color(transparent);
-  
+
     @include textfield.label-color($secondary-dark);
     @include textfield.disabled-label-color($secondary-dark);
-    
+
     @include textfield.disabled-outline-color($primary-dark);
     @include textfield.outline-color($primary-dark);
     @include textfield.hover-outline-color($primary-dark);
@@ -199,28 +199,28 @@ $background-dark: black;
   button {
     @include button.outline-width(2px);
     @include button.outline-color($primary-dark);
-    @include button.disabled-outline-color(rgba($secondary-dark, .5));
-  
+    @include button.disabled-outline-color(rgba($secondary-dark, 0.5));
+
     @include button.ink-color($primary-dark);
-    @include button.disabled-ink-color(rgba($secondary-dark, .5));
+    @include button.disabled-ink-color(rgba($secondary-dark, 0.5));
   }
   .mdc-button__ripple {
     @include ripple.states-base-color($primary-dark);
   }
   mdc-list {
-    height: 75vh; 
+    height: 75vh;
     overflow-y: scroll;
 
     @include list.item-primary-text-ink-color($secondary-dark);
     @include list.item-secondary-text-ink-color($secondary-dark);
-    
+
     @include list.item-meta-ink-color($primary-dark);
   }
   mdc-list-item {
     &.mdc-list-item--selected {
       @include list.item-primary-text-ink-color($primary-dark);
       @include list.item-graphic-fill-color($primary-dark);
-  
+
       &.mdc-ripple-upgraded {
         @include ripple.states-base-color($primary-dark);
       }

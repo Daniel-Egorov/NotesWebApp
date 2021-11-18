@@ -1,4 +1,10 @@
-import { MdcButton, MdcIcon, MdcList, MdcTextarea, MdcTextField } from '@angular-mdc/web';
+import {
+  MdcButton,
+  MdcIcon,
+  MdcList,
+  MdcTextarea,
+  MdcTextField,
+} from '@angular-mdc/web';
 import { Component, ViewChild } from '@angular/core';
 
 export class Note {
@@ -10,7 +16,7 @@ export class Note {
   constructor(title: string, date: Date, text: string) {
     this.title = title;
     this.text = text;
-    this.date = date ? date.toLocaleString() : "";
+    this.date = (date ? date.toLocaleString() : '').replace(', ', ' ');
   }
 }
 
@@ -36,7 +42,7 @@ export class AppComponent {
   public body = document.body;
   public theme: string | null = null;
 
-  constructor() { }
+  constructor() {}
   ngOnInit() {
     this.data = JSON.parse(localStorage.getItem('notesJSON')!);
     this.theme = JSON.parse(localStorage.getItem('theme')!);
@@ -46,11 +52,13 @@ export class AppComponent {
     }
 
     if (this.theme![0]) {
-      if (this.theme![0] === 'dark-theme') this.body.classList.replace('light-theme', 'dark-theme');
-      else if (this.theme![0] === 'light-theme') this.body.classList.replace('dark-theme', 'light-theme');
+      if (this.theme![0] === 'dark-theme')
+        this.body.classList.replace('light-theme', 'dark-theme');
+      else if (this.theme![0] === 'light-theme')
+        this.body.classList.replace('dark-theme', 'light-theme');
     }
   }
-  
+
   clearTextFields() {
     this.noteTextInput?.writeValue(null);
     this.noteTitleInput?.writeValue(null);
@@ -59,14 +67,10 @@ export class AppComponent {
 
   onAdd() {
     this.inputDisabled = false;
-    let newNote = new Note(
-      "New Note",
-      new Date(Date.now()),
-      ""
-    );
+    let newNote = new Note('New Note', new Date(Date.now()), '');
 
     this.notes.unshift(newNote);
-    this.filteredNotes = this.notes.filter(note => {
+    this.filteredNotes = this.notes.filter((note) => {
       if (!this.searchFieldInput?.value) {
         return this.notes;
       }
@@ -90,7 +94,7 @@ export class AppComponent {
 
     this.notes.splice(this.notes.indexOf(note), 1);
     this.filteredNotes = this.notes;
-    localStorage.setItem('notesJSON', JSON.stringify(this.notes))
+    localStorage.setItem('notesJSON', JSON.stringify(this.notes));
   }
 
   saveTitle() {
@@ -105,7 +109,7 @@ export class AppComponent {
     note.title = this.noteTitleInput?.value;
     note.text = this.noteTextInput?.value;
     this.saveDisabled = true;
-    
+
     localStorage.setItem('notesJSON', JSON.stringify(this.notes));
   }
 
@@ -123,18 +127,21 @@ export class AppComponent {
     if (this.body.classList[0] === 'dark-theme') {
       localStorage.setItem('theme', JSON.stringify(['light-theme']));
       this.body.classList.replace('dark-theme', 'light-theme');
-    } 
-    else if (this.body.classList[0] === 'light-theme') {
+    } else if (this.body.classList[0] === 'light-theme') {
       localStorage.setItem('theme', JSON.stringify(['dark-theme']));
       this.body.classList.replace('light-theme', 'dark-theme');
-    } 
+    }
   }
 
   onSelectionChange(_: any) {
     this.inputDisabled = false;
     this.saveDisabled = true;
-    this.noteTitleInput?.writeValue(this.notes[this.noteList!.getSelectedIndex()].title);
-    this.noteTextInput?.writeValue(this.notes[this.noteList!.getSelectedIndex()].text);
+    this.noteTitleInput?.writeValue(
+      this.notes[this.noteList!.getSelectedIndex()].title
+    );
+    this.noteTextInput?.writeValue(
+      this.notes[this.noteList!.getSelectedIndex()].text
+    );
     this.noteTextInput?.focus();
   }
 
@@ -147,27 +154,23 @@ export class AppComponent {
   }
 
   onTextAreaInput(event: any) {
-
-    if (
-      event
-      && this.noteList?.getSelectedIndex() !== -1
+    if (event && this.noteList?.getSelectedIndex() !== -1) {
+      this.saveDisabled = false;
+    } else if (
+      !event &&
+      this.noteTitleInput?.value &&
+      this.noteList?.getSelectedIndex() !== -1
     ) {
       this.saveDisabled = false;
-    }
-    else if (
-      !event
-      && this.noteTitleInput?.value
-      && this.noteList?.getSelectedIndex() !== -1
-    ) {
-      this.saveDisabled = false;
-    }
-    else {
+    } else {
       this.saveDisabled = true;
     }
   }
 
   onSearchFieldInput(event: any) {
-    this.filteredNotes = this.notes.filter(note => note.title?.toLowerCase()?.includes(event.toLowerCase()));
+    this.filteredNotes = this.notes.filter((note) =>
+      note.title?.toLowerCase()?.includes(event.toLowerCase())
+    );
     this.noteList?.reset();
     this.clearTextFields();
   }

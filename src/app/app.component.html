@@ -1,4 +1,3 @@
-
 <div id="container">
   <div fxLayout="row" fxLayoutAlign="left" fxLayoutGap="15px">
     <div fxLayout="column" fxLayoutGap="15px">
@@ -10,14 +9,16 @@
               <i class="material-icons mdc-button__icon" aria-hidden="true">post_add</i>
               <span class="mdc-button__label">Add</span>
             </button>
-      
-            <button mdc-button [disabled]="saveDisabled" (click)="onSave()" class="mdc-button mdc-button--icon-leading" [outlined]="true">
+
+            <button mdc-button [disabled]="saveDisabled" (click)="onSave()" class="mdc-button mdc-button--icon-leading"
+              [outlined]="true">
               <span class="mdc-button__ripple"></span>
               <i class="material-icons mdc-button__icon" aria-hidden="true">save_alt</i>
               <span class="mdc-button__label">Save</span>
             </button>
           </div>
-          <mdc-list #noteList class="themed-border themed-scroll-bar" [dense]="false" [twoLine]="true" [useSelectedClass]="true" [singleSelection]="true" (selectionChange)="onSelectionChange($event)">
+          <mdc-list #noteList class="themed-border themed-scroll-bar" [dense]="false" [twoLine]="true"
+            [useSelectedClass]="true" [singleSelection]="true" (selectionChange)="onSelectionChange($event)">
             <mdc-list-item *ngFor="let note of filteredNotes">
               <mdc-list-item-text [secondaryText]="note.date">{{note.title}}
               </mdc-list-item-text>
@@ -27,7 +28,8 @@
         </div>
         <div fxLayout="column" fxLayoutGap="15px">
           <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="15px">
-            <button #themeSwitchButton mdc-button class="mdc-button mdc-button--icon-leading" (click)="onThemeClick()" [outlined]="true">
+            <button #themeSwitchButton mdc-button class="mdc-button mdc-button--icon-leading" (click)="onThemeClick()"
+              [outlined]="true">
               <span class="mdc-button__ripple"></span>
               <mdc-icon id="lightModeIcon">light_mode</mdc-icon>
               <mdc-icon id="darkModeIcon">dark_mode</mdc-icon>
@@ -37,13 +39,15 @@
               <mdc-icon mdcTextFieldIcon [leading]="true">search</mdc-icon>
             </mdc-text-field>
           </div>
-          <mdc-text-field #noteTitleInput label="Title" [disabled]="inputDisabled" (input)="onTextFieldInput($event)" (change)="onTextFieldChange($event)"[outlined]="true">
+          <mdc-text-field #noteTitleInput label="Title" [disabled]="inputDisabled" (input)="onTextFieldInput($event)"
+            (change)="onTextFieldChange($event)" [outlined]="true">
           </mdc-text-field>
-        
-          <mdc-textarea #noteTextInput label="Note" [disabled]="inputDisabled" [rows]="15" [cols]="100" (input)="onTextAreaInput($event)">
+
+          <mdc-textarea #noteTextInput label="Note" [disabled]="inputDisabled" [rows]="15" [cols]="100"
+            (input)="onTextAreaInput($event)">
           </mdc-textarea>
         </div>
       </div>
     </div>
-  </div>  
+  </div>
 </div>
