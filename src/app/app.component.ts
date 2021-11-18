@@ -50,7 +50,9 @@ export class AppComponent {
       this.notes = this.data;
       this.filteredNotes = this.notes;
     }
+  }
 
+  ngAfterViewInit() {
     if (this.theme![0]) {
       if (this.theme![0] === 'dark-theme')
         this.body.classList.replace('light-theme', 'dark-theme');
