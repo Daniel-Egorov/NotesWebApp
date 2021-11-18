@@ -82,6 +82,18 @@ $background-dark: black;
       height: 100%;
       margin: 0;
       resize: none;
+      &::-webkit-scrollbar-track {
+        background-color: rgba($background-light, 1);
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: rgba($primary-light, 1);
+        border: 3px solid $background-light;
+      }
     }
     @include textfield.caret-color($primary-light);
 
@@ -181,6 +193,18 @@ $background-dark: black;
       height: 100%;
       margin: 0;
       resize: none;
+      &::-webkit-scrollbar-track {
+        background-color: rgba($background-dark, 1);
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: rgba($primary-dark, 1);
+        border: 3px solid $background-dark;
+      }
     }
     @include textfield.caret-color($primary-dark);
 
